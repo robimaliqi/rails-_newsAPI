@@ -1,9 +1,33 @@
-<h1>Latest News</h1>
-<% @articles.each do |article| %>
-  <div>
-    <h2><%= article['title'] %></h2>
-    <p><%= article['description'] %></p>
-    <p><%= image_tag article['image'] %></p>
-    <a href="<%= article['url'] %>">Read More</a>
-  </div>
-<% end %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Latest News</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="main-container">
+      <h1>Latest News</h1>
+      <div>
+        <% @articles.each do |article| %>
+        <% published_at = Time.parse(article['publishedAt']) %>
+        <div class="article-container">
+          <div class="title-container">
+            <h2><%= article['title'] %></h2>
+          </div>
+          <div class="description-container">
+            <p><%= article['description'] %></p>
+            <div>
+              <p style="float: left;">Published at: <%= published_at.strftime('%H:%M %d/%m/%Y') %></p>
+              <a href="<%= article['url'] %>" style="float: right;">Read More</a>
+              <div style="clear: both;"></div>
+            </div>
+          </div>
+          <div class="image-container">
+            <p><%= image_tag article['image'], style: "max-width: 50%; height: auto;" %></p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>
