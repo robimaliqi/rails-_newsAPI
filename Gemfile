@@ -73,3 +73,4 @@ end
 
 gem "dotenv-rails", groups: [:development, :test]
 gem 'json'
+gem 'geocoder'
