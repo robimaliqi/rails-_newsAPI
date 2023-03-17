@@ -7,7 +7,12 @@
   <body>
     <div class="main-container">
       <h1>Latest News</h1>
-      <div>
+      <div class="main-container">
+        <form action="<%= search_news_path %>" method="get">
+          <input type="text" name="q" placeholder="Search news...">
+          <button type="submit">Search</button>
+        </form>
+        </div>
         <% @articles.each do |article| %>
         <% published_at = Time.parse(article['publishedAt']) %>
         <div class="article-container">
