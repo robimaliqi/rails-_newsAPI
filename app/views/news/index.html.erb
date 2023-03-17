@@ -1,1 +1,9 @@
-<h1>Hello, Rails!</h1>
+<h1>Latest News</h1>
+<% @articles.each do |article| %>
+  <div>
+    <h2><%= article['title'] %></h2>
+    <p><%= article['description'] %></p>
+    <p><%= image_tag article['image'] %></p>
+    <a href="<%= article['url'] %>">Read More</a>
+  </div>
+<% end %>
