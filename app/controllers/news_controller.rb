@@ -1,7 +1,10 @@
+require 'open-uri'
+require 'json'
+require 'geocoder'
+
 class NewsController < ApplicationController
-  require 'open-uri'
-  require 'json'
-  require 'geocoder'
+
+  public
 
   def index
     @articles = fetch_articles('example')
