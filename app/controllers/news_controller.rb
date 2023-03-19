@@ -16,18 +16,18 @@ class NewsController < ApplicationController
 
   def search
     if params[:q].empty?
-      search_query = 'news'
+      @articles = fetch_articles
     else
       search_query = params[:q]
+      @articles = fetch_articles(search_query)
     end
 
-    @articles = fetch_articles(search_query)
     render :index
   end
 
   # private
 
-  def fetch_articles(query)
+  def fetch_articles(query = 'news')
     user_input = URI.encode_www_form_component(query)
     url_search = URL % {query: user_input, country: set_location}
     news_serialized = URI.open(url_search).read
