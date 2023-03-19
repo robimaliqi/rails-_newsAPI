@@ -2,9 +2,16 @@ require 'open-uri'
 require 'json'
 require 'geocoder'
 
+
 class NewsController < ApplicationController
 
+  API_KEY = ENV['API_KEY']
+  URL     = "https://gnews.io/api/v4/search?q=%<query>s&lang=en&country=%<country>s&max=10&apikey=#{API_KEY}"
+
   public
+  def initialize
+    @articles = []
+  end
 
   def index
     @articles = fetch_articles('example')
@@ -19,8 +26,9 @@ class NewsController < ApplicationController
   private
 
   def fetch_articles(query)
-    url = "https://gnews.io/api/v4/search?q=#{URI.encode_www_form_component(query)}&lang=en&country=#{@country_code}&max=10&apikey=#{ENV['API_KEY']}"
-    news_serialized = URI.open(url).read
+    user_input = URI.encode_www_form_component(query)
+    url_search = URL % {query: user_input, country: @country_code}
+    news_serialized = URI.open(url_search).read
     JSON.parse(news_serialized)["articles"]
   end  
 
