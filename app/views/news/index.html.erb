@@ -7,31 +7,38 @@
   <body>
     <div class="main-container">
       <h1>Latest News</h1>
+
       <div class="main-container">
-        <form action="<%= search_news_path %>" method="get">
-          <input type="text" name="q" placeholder="Search news...">
-          <button type="submit">Search</button>
-        </form>
-        </div>
-        <% @articles.each do |article| %>
-        <% published_at = Time.parse(article['publishedAt']) %>
-        <div class="article-container">
-          <div class="title-container">
-            <h2><%= article['title'] %></h2>
-          </div>
-          <div class="description-container">
-            <p><%= article['description'] %></p>
-            <div>
-              <p style="float: left;">Published at: <%= published_at.strftime('%H:%M %d/%m/%Y') %></p>
-              <a href="<%= article['url'] %>" style="float: right;">Read More</a>
-              <div style="clear: both;"></div>
-            </div>
-          </div>
-          <div class="image-container">
-            <p><%= image_tag article['image'], style: "max-width: 50%; height: auto;" %></p>
-          </div>
-        </div>
+        <%= form_tag search_news_path, method: :get do %>
+          <%= text_field_tag :q, params[:q], placeholder: "Search news..." %>
+          <%= submit_tag "Search" %>
         <% end %>
+      </div>
+
+      <div class="main-container">
+          <% @articles.each do |article| %>
+            <% published_at = Time.parse(article['publishedAt']) %>
+
+            <div class="article-container">
+              <div class="title-container">
+                <h2><%= article['title'] %></h2>
+              </div>
+
+              <div class="description-container">
+                <p><%= article['description'] %></p>
+
+                <div>
+                  <p style="float: left;">Published at: <%= published_at.strftime('%H:%M %d/%m/%Y') %></p>
+                  <a href="<%= article['url'] %>" style="float: right;">Read More</a>
+                  <div style="clear: both;"></div>
+                </div>
+              </div>
+
+              <div class="image-container">
+                <p><%= image_tag article['image'], style: "max-width: 90%; height: auto;" %></p>
+              </div>
+            </div>
+          <% end %>
       </div>
     </div>
   </body>
