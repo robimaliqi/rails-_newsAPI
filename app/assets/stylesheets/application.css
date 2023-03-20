@@ -37,3 +37,8 @@ body {
 .image-container img {
   max-width: 100%;
 }
+
+.error-container {
+  color: #d8000c;
+  float: right;
+}

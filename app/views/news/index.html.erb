@@ -8,12 +8,15 @@
     <div class="main-container">
       <h1>Latest News</h1>
 
-      <div class="main-container">
         <%= form_tag search_news_path, method: :get do %>
-          <%= text_field_tag :q, params[:q], placeholder: "Search news..." %>
-          <%= submit_tag "Search" %>
+            <%= text_field_tag :q, params[:q], placeholder: "Search news..." %>
+            <%= submit_tag "Search" %>
+            <% if flash[:error] %>
+            <div class="error-container">
+              <p><%= flash[:error] %></p>
+            </div>
+          <% end %>
         <% end %>
-      </div>
 
       <div class="main-container">
           <% @articles.each do |article| %>

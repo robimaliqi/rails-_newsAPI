@@ -14,8 +14,13 @@ class NewsController < ApplicationController
 
   def search
     search_query = params[:q]
-    @articles = fetch_articles(search_query)
-    render :index
+    if search_query.blank?
+      flash[:error] = "Please enter a search query."
+      redirect_to root_path
+    else
+      @articles = fetch_articles(search_query)
+      render :index;
+    end
   end
 
   def fetch_articles(query)
@@ -23,4 +28,4 @@ class NewsController < ApplicationController
     url_search = format(URL, query: user_input, country: request.location.country_code)
     JSON.parse(URI.open(url_search).read)['articles']
   end
-
+end
