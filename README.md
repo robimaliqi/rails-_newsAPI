@@ -4,10 +4,17 @@ This is a simple web application built using Ruby on Rails 7 that allows users t
 
 ### Installation
 
-1. Clone the repository: git clone https://github.com/your-username/news-search-app.git
-2. Install dependencies: bundle install
+1. Clone the repository:
+   `$ git clone https://github.com/your-username/news-search-app.git`<br />
+
+2. Install gems:
+   `$ bundle install`
+
 3. Set up environment variables by creating a .env file in the root directory and adding the following: API_KEY=your-api-key
-4. Start the server: rails server
+
+4. Start the server:
+   `$ bin/rails server`
+
 5. Open the application in your web browser by navigating to http://localhost:3000
 
 ### Usage
@@ -36,7 +43,7 @@ app/services/location_service.rb
 
 This file contains the logic for the LocationService class, which is responsible for getting the user's location based on their IP address. It uses the geocoder gem to perform the location lookup.
 
-#### Gemfile
+### Gemfile
 
 This file lists all the dependencies required for the application to run. It includes the dotenv-rails, json, and geocoder gems, among others.
 
