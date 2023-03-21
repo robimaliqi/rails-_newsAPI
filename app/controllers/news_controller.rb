@@ -1,15 +1,9 @@
-require 'open-uri'
-require 'json'
-require 'geocoder'
-
+require_relative '../services/news_service'
+require_relative '../services/location_service'
 
 class NewsController < ApplicationController
-
-  API_KEY = ENV['API_KEY']
-  URL     = "https://gnews.io/api/v4/search?q=%<query>s&lang=en&country=%<country>s&max=10&apikey=#{API_KEY}"
-
   def index
-    @articles = fetch_articles('news')
+    @articles = NewsService.search('news', LocationService.get_country_code(request))
   end
 
   def search
@@ -18,14 +12,9 @@ class NewsController < ApplicationController
       flash[:error] = "Please enter a search query."
       redirect_to root_path
     else
-      @articles = fetch_articles(search_query)
-      render :index;
+      @articles = NewsService.search(search_query, LocationService.get_country_code(request))
+      render :index
     end
   end
-
-  def fetch_articles(query)
-    user_input = URI.encode_www_form_component(query)
-    url_search = format(URL, query: user_input, country: request.location.country_code)
-    JSON.parse(URI.open(url_search).read)['articles']
-  end
 end
+
