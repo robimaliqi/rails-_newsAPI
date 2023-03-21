@@ -7,7 +7,7 @@ class LocationService
     if location.present? && location.country_code.present?
       location.country_code
     else
-      'gb'
+      'GB'
     end
   end
 end
