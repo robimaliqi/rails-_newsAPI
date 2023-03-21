@@ -17,6 +17,10 @@ This is a simple web application built using Ruby on Rails 7 that allows users t
 
 5. Open the application in your web browser by navigating to http://localhost:3000
 
+### API key
+
+[https://gnews.io/](https://gnews.io/)
+
 ### Usage
 
 The application has two main functionalities: searching for news articles and displaying the search results.
@@ -45,7 +49,7 @@ This file contains the logic for the LocationService class, which is responsible
 
 ### Gemfile
 
-This file lists all the dependencies required for the application to run. It includes the dotenv-rails, json, and geocoder gems, among others.
+This file lists all the gems required for the application to run. It includes the dotenv-rails, json, and geocoder gems, among others.
 
 ### Testing
 
