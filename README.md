@@ -56,3 +56,5 @@ This file lists all the gems required for the application to run. It includes th
 The application includes unit tests for the LocationService class using the rspec-rails and rails-controller-testing gems. To run the tests, simply run bundle exec rspec in the terminal.
 
 ### Deployment
+
+Would not let me deploy as the api is on a free price plan, I would of liked to deploy on fly.io or render so users could see the site in action on the internet.
